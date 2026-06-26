@@ -1,0 +1,26 @@
+{
+  "skill_name": "project-review-council",
+  "version": "1.0.0",
+  "description": "20-role adversarial project review council producing evidence-based Go/No-Go decisions",
+  "roles_dir": "roles/",
+  "workflows_dir": "workflows/",
+  "rubrics_dir": "rubrics/",
+  "checklists_dir": "checklists/",
+  "templates_dir": "templates/",
+  "examples_dir": "examples/",
+  "config_dir": "config/",
+  "roles": [
+    "ceo", "vc", "cto", "chief-architect", "staff-engineer",
+    "product-director", "ux-expert", "growth-lead", "security-auditor",
+    "devops-lead", "qa-lead", "data-architect", "compliance-officer",
+    "marketing-strategist", "sales-director", "customer-success",
+    "competitor", "devils-advocate", "independent-auditor", "future-analyst"
+  ],
+  "phases": [
+    "01-understand", "02-evidence", "03-role-audit", "04-cross-review",
+    "05-risk-ranking", "06-hidden-issues", "07-business-eval",
+    "08-execution-eval", "09-decision", "10-red-blue"
+  ],
+  "archetype": "library",
+  "patterns": ["fan-out-synthesize", "adversarial-verify", "pipeline"]
+}

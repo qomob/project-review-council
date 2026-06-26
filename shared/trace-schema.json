@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Project Review Council Execution Trace",
+  "description": "可观测性契约：记录每次评审的执行轨迹，供回灌分析优化 rubric 权重",
+  "type": "object",
+  "required": ["session_id", "project", "phases"],
+  "properties": {
+    "session_id": { "type": "string", "description": "唯一会话标识" },
+    "project": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": { "type": "string" },
+        "type": { "type": "string", "enum": ["startup", "saas", "github", "enterprise", "other"] },
+        "stage": { "type": "string" }
+      }
+    },
+    "config": {
+      "type": "object",
+      "properties": {
+        "depth": { "type": "string", "enum": ["quick", "standard", "deep"] },
+        "roles_enabled": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["phase_id", "status"],
+        "properties": {
+          "phase_id": { "type": "string", "description": "P1-P10" },
+          "status": { "type": "string", "enum": ["pass", "conditional_pass", "fail", "skipped"] },
+          "tokens": { "type": "integer", "description": "该阶段 token 消耗" },
+          "duration_ms": { "type": "integer" },
+          "exit_gate_result": { "type": "string" },
+          "rollback_count": { "type": "integer", "default": 0 },
+          "evidence_tags": {
+            "type": "object",
+            "description": "证据/推测/待验证 计数",
+            "properties": {
+              "evidence": { "type": "integer" },
+              "speculation": { "type": "integer" },
+              "needs_verification": { "type": "integer" }
+            }
+          }
+        }
+      }
+    },
+    "decision": {
+      "type": "object",
+      "properties": {
+        "grade": { "type": "string", "enum": ["A+", "A", "B+", "B", "C", "D", "F"] },
+        "recommendation": { "type": "string", "enum": ["continue", "pause", "refactor", "abandon"] },
+        "fatal_risks_count": { "type": "integer" },
+        "score_average": { "type": "number" }
+      }
+    }
+  }
+}

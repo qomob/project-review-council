@@ -1,0 +1,21 @@
+# 商业评估 11 维权重（P7 阶段使用）
+# 归一化后用于计算加权综合分
+# 调整权重不需要改 Prompt
+
+dimensions:
+  commercial_value:    { weight: 0.15, description: "商业价值：能否产生可持续收入" }
+  technical_value:     { weight: 0.12, description: "技术价值：技术先进性与可维护性" }
+  user_value:          { weight: 0.15, description: "用户价值：解决真实痛点的程度" }
+  market_value:        { weight: 0.10, description: "市场价值：市场规模与时机" }
+  innovation:          { weight: 0.08, description: "创新程度：相对现有方案的突破" }
+  moat:                { weight: 0.15, description: "竞争壁垒：护城河强度" }
+  replicability:       { weight: 0.05, description: "可复制性：模式可扩展性（反向计分，越难复制越好）" }
+  business_model:      { weight: 0.05, description: "商业模式：盈利逻辑闭环" }
+  profitability:       { weight: 0.05, description: "盈利能力：单位经济模型" }
+  growth_potential:    { weight: 0.05, description: "增长潜力：增长飞轮" }
+  globalization:       { weight: 0.05, description: "全球化潜力：跨地域扩展能力" }
+
+# 触发分歧警报的阈值
+alert_thresholds:
+  role_score_spread: 4      # 角色评分极差 ≥4 触发 P4 强制交叉
+  evidence_ratio_min: 0.5   # 证据比例 <50% 触发 P2 回退
